@@ -7,6 +7,7 @@ using std::endl;
 #include <fstream>
 using std::ifstream;
 
+#include <numeric>
 #include <cstring>
 
 #include <vector>
@@ -28,6 +29,11 @@ int main()
 
   //create output buffer to hold inter-header contents when searching them
   std::vector<std::string> lineBuffer;
+
+  //define relevant points of second domain
+  double B[] = {27.6,-82.2};
+  double A[] = {25.5,-80.8};
+  double C[] = {27,-83.8};
   
   // read each line of the file
   while (!fin.eof()){
@@ -37,6 +43,7 @@ int main()
    
     // parse the line into blank-delimited tokens
     int n = 0; // a for-loop index
+    //bool to track presence in domain
     bool inDomain = false;
     // array to store memory addresses of the tokens in buf
     const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
@@ -76,15 +83,24 @@ int main()
         }
 
         double lat = std::stod(token[1]);
-        double lon = 360 - std::stod(token[0]);
+        double lon = -(360 - std::stod(token[0]));
 
-        
-        if(lat > 25 && lat < 27 && lon > 79 && lon < 81) 
+        //check first domain
+        if(lat > 25 && lat < 27 && lon > -81 && lon < -79) 
         {
           //
           cout << header <<endl;
           inDomain = true;
         }
+
+        //check second domain low resolution right now, working on a better solution to represent any rectangle
+        if(lat < 27.5 && lat > 25 && lon > -83.8 && lon < -81)
+        {
+          //
+          cout << header <<endl;
+          inDomain = true;
+        }
+
        
 
         
@@ -105,6 +121,7 @@ int main()
     }
   }
   file.close();
+  cout<< "end of file " <<endl;
 
     // process (print) the tokens
     
