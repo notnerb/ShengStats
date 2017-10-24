@@ -37,7 +37,7 @@ int main()
    
     // parse the line into blank-delimited tokens
     int n = 0; // a for-loop index
-    bool inDomain;
+    bool inDomain = false;
     // array to store memory addresses of the tokens in buf
     const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
     char start[] = "start";
