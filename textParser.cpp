@@ -2,6 +2,7 @@
 
 #include <iostream>
 using std::cout;
+using std::cin;
 using std::endl;
 
 #include <fstream>
@@ -18,12 +19,15 @@ const char* const DELIMITER = " ";
 
 int main()
 {
+  std::string filename;
   //prepare output
   std::ofstream file;
   file.open("storms.rtf");
   // create a file-reading object
   ifstream fin;
-  fin.open("traj_1981.txt"); // open a file
+  cout<<"enter file name" <<endl;
+  cin >> filename;
+  fin.open(filename); // open a file
   if (!fin.good()) 
     return 1; // exit if file not found
 
