@@ -17,9 +17,8 @@ const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
 const char* const DELIMITER = " ";
 
-int main()
-{
-  std::string filename;
+int textParser(){
+	std::string filename;
   //prepare output
   std::ofstream file;
   file.open("storms.rtf");
@@ -127,7 +126,17 @@ int main()
   file.close();
   cout<< "end of file " <<endl;
 
-    // process (print) the tokens
-    
-  
+}
+
+int main()
+{
+	for (int i = 0; i < 20; i++){
+		int year = 1981 + i;
+		std::string titleYear = std::to_string(year);
+		std::string inputFile = "traj_" + titleYear + ".txt";
+		std::string outputFile = "storms" + titleYear + ".rtf";
+		cout << inputFile << endl << outputFile << endl;
+		textParser(inputFile, outputFile);
+
+	}
 }
