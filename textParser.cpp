@@ -10,6 +10,7 @@ using std::ifstream;
 
 #include <numeric>
 #include <cstring>
+using std::string;
 
 #include <vector>
 
@@ -17,16 +18,15 @@ const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
 const char* const DELIMITER = " ";
 
-int textParser(){
+int textParser(string inFile, string outFile){
 	std::string filename;
   //prepare output
   std::ofstream file;
-  file.open("storms.rtf");
+  file.open(outFile);
   // create a file-reading object
   ifstream fin;
-  cout<<"enter file name" <<endl;
-  cin >> filename;
-  fin.open(filename); // open a file
+  
+  fin.open(inFile); // open a file
   if (!fin.good()) 
     return 1; // exit if file not found
 
