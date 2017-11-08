@@ -18,11 +18,10 @@ const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
 const char* const DELIMITER = " ";
 
-int textParser(string inFile, string outFile){
-	std::string filename;
+int textParser(string inFile, std::ofstream& outFile){
+	
   //prepare output
-  std::ofstream file;
-  file.open(outFile);
+  
   // create a file-reading object
   ifstream fin;
   
@@ -110,11 +109,11 @@ int textParser(string inFile, string outFile){
       }
       //pop lineBuffer out to output file
       if(inDomain){
-        file << header << "\n";
+        outFile << header << "\n";
         for(unsigned int i=0; i<lineBuffer.size(); i++)
         {
           
-          file << lineBuffer[i] << "\n";
+          outFile << lineBuffer[i] << "\n";
           
         }
         lineBuffer.clear();
@@ -123,20 +122,21 @@ int textParser(string inFile, string outFile){
       lineBuffer.clear();
     }
   }
-  file.close();
+  
   cout<< "end of file " <<endl;
 
 }
 
 int main()
 {
+  std::ofstream file;
+  file.open("domainStorms.rtf");
 	for (int i = 0; i < 20; i++){
 		int year = 1981 + i;
 		std::string titleYear = std::to_string(year);
 		std::string inputFile = "traj_" + titleYear + ".txt";
-		std::string outputFile = "historicalstorms" + titleYear + ".rtf";
-		cout << inputFile << endl << outputFile << endl;
-		textParser(inputFile, outputFile);
+    textParser(inputFile, file);
 
 	}
+  file.close();
 }
