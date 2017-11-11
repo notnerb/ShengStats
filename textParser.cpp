@@ -85,18 +85,13 @@ int textParser(string inFile, std::ofstream& outFile){
         }
 
         double lat = std::stod(token[1]);
-        double lon = -(360 - std::stod(token[0]));
+        double lon = (360 - std::stod(token[0]));
 
         //check first domain
-        if(lat > 25 && lat < 27 && lon > -81 && lon < -79) 
-        {
-          //
-          cout << header <<endl;
-          inDomain = true;
-        }
+
 
         //check second domain low resolution right now, working on a better solution to represent any rectangle
-        if(lat < 27.5 && lat > 25 && lon > -83.8 && lon < -81)
+        if(lat < 27.5 && lat > 24.5 && lon > 79 && lon < 83.5)
         {
           //
           cout << header <<endl;
