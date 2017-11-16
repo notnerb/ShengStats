@@ -1,0 +1,11 @@
+actorfilters -  more convienent form of subsetting
+slice - returns rows by position
+
+arrange- order entries based on column values
+select - select columns from d-frames
+rename - quick way to rename columns
+distinct - unique entries in column
+mutate - create columna as function of existing
+  transmute - only returns new column
+Summarise - allows you to collapse data frames into single rows 
+sample_n and sample frac - random sample of # or % of dataframe.
