@@ -90,7 +90,7 @@ int textParser(string inFile, std::ofstream& outFile){
         //check first domain
 
 
-        //check second domain low resolution right now, working on a better solution to represent any rectangle
+        //check combination of first and second domain, low resolution right now, working on a better solution to represent any rectangle
         if(lat < 27.5 && lat > 24.5 && lon > 79 && lon < 83.5)
         {
           //
@@ -127,10 +127,11 @@ int main()
   std::ofstream file;
   file.open("domainStorms.rtf");
 	for (int i = 0; i < 20; i++){
+		//run the parser on all datafiles from the Sheng dataset.
 		int year = 1981 + i;
 		std::string titleYear = std::to_string(year);
 		std::string inputFile = "traj_" + titleYear + ".txt";
-    textParser(inputFile, file);
+    		textParser(inputFile, file);
 
 	}
   file.close();
